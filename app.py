@@ -6,13 +6,20 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objects as go
 import dash_table
+import os
+
+my_user = os.environ.get('DB_USER')
+my_pass = os.environ.get('DB_USER_PASSWORD')
+my_host = os.environ.get('DB_HOST')
+my_port = os.environ.get('DB_PORT')
+my_db = os.environ.get('DB_APP_PYTHON')
 
 df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 df['YearMonth'] = pd.to_datetime(df['Entry time'].map(lambda x: "{}-{}".format(x.year, x.month)))
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/uditagarwal/pen/oNvwKNP.css', 'https://codepen.io/uditagarwal/pen/YzKbqyV.css'])
 
-engine = create_engine('postgresql://postgres:postgres@localhost/trades')
+engine = create_engine('postgresql://'+my_user+':'+my_pass+'@'+my_host+':'+my_port+'/'+my_db)
 
 app.layout = html.Div(children=[
     html.Div(
