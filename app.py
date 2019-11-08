@@ -9,8 +9,7 @@ import dash_table
 import os
 from envs import env
 
-#my_user = os.environ.get('DB_USER')
-my_user = os.environ['DB_USER']
+my_user = os.environ.get('DB_USER')
 my_pass = os.environ.get('DB_USER_PASSWORD')
 my_host = os.environ.get('DB_HOST')
 my_port = os.environ.get('DB_PORT')
