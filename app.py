@@ -18,8 +18,14 @@ df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 df['YearMonth'] = pd.to_datetime(df['Entry time'].map(lambda x: "{}-{}".format(x.year, x.month)))
 
 app = dash.Dash(__name__, external_stylesheets=['https://codepen.io/uditagarwal/pen/oNvwKNP.css', 'https://codepen.io/uditagarwal/pen/YzKbqyV.css'])
-
-engine = create_engine('postgresql://'+my_user+':'+my_pass+'@'+my_host+':'+my_port+'/'+my_db)
+engine = create_engine('postgresql://{username}:{password}@{server}:{port}/{database}'.format(
+            username=my_user,
+            password=my_pass,
+            server=my_host,
+            port=my_port,
+            database=my_db
+        ))
+# = create_engine('postgresql://'+my_user+':'+my_pass+'@'+my_host+':'+my_port+'/'+my_db)
 
 app.layout = html.Div(children=[
     html.Div(
