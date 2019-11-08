@@ -14,11 +14,7 @@ my_pass = os.environ.get('DB_USER_PASSWORD')
 my_host = os.environ.get('DB_HOST')
 my_port = os.environ.get('DB_PORT')
 my_db = os.environ.get('DB_APP_PYTHON')
-print(my_user)
-print(my_pass)
-print(my_host)
-print(my_port)
-print(my_db)
+
 df = pd.read_csv('aggr.csv', parse_dates=['Entry time'])
 df['YearMonth'] = pd.to_datetime(df['Entry time'].map(lambda x: "{}-{}".format(x.year, x.month)))
 
